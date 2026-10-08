@@ -1,0 +1,45 @@
+{
+  "profiles": [
+    {
+      "name": "Remote Work",
+      "description": "Everyday remote-work setup: slightly larger pointer, high contrast, full keyboard navigation, remote-work mode on.",
+      "pointer_size": 1.5,
+      "display_contrast": "high",
+      "voiceover_enabled": false,
+      "keyboard_navigation": true,
+      "remote_work_mode": true
+    },
+    {
+      "name": "Accessibility Power User",
+      "description": "Maximum accessibility: large pointer, max contrast, full keyboard navigation, VoiceOver ready.",
+      "pointer_size": 2.0,
+      "display_contrast": "max",
+      "voiceover_enabled": true,
+      "keyboard_navigation": true,
+      "remote_work_mode": false
+    },
+    {
+      "name": "Developer Focus",
+      "description": "Crisp high contrast and a slightly larger pointer with minimal distraction for long coding sessions.",
+      "pointer_size": 1.3,
+      "display_contrast": "high",
+      "voiceover_enabled": false,
+      "keyboard_navigation": true,
+      "remote_work_mode": false
+    },
+    {
+      "name": "High Contrast",
+      "description": "Full accessibility preset: maximum contrast and enlarged pointer.",
+      "pointer_size": 2.0,
+      "display_contrast": "max",
+      "voiceover_enabled": false,
+      "keyboard_navigation": true,
+      "remote_work_mode": false
+    }
+  ],
+  "state": {
+    "active_profile": null,
+    "remote_work_mode": false,
+    "last_applied": null
+  }
+}

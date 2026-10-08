@@ -1,0 +1,36 @@
+{
+  "themes": [
+    {
+      "name": "apple_cursor",
+      "pointer_size": 1.5,
+      "contrast_level": "high",
+      "description": "High-contrast companion preset for the apple_cursor theme (crisp, colorful, pixel-perfect macOS-style cursors by ful1e5). Enlarges the pointer and raises display contrast so the cursor stays visible during screen shares.",
+      "source": "https://github.com/ful1e5/apple_cursor"
+    },
+    {
+      "name": "high_contrast",
+      "pointer_size": 1.5,
+      "contrast_level": "max",
+      "description": "Maximum display contrast with a moderately enlarged pointer for low-vision users and bright environments.",
+      "source": "builtin"
+    },
+    {
+      "name": "large_pointer",
+      "pointer_size": 3.0,
+      "contrast_level": "normal",
+      "description": "Largest supported pointer size with default contrast for users who frequently lose the cursor on multi-monitor setups.",
+      "source": "builtin"
+    },
+    {
+      "name": "remote_work_clear",
+      "pointer_size": 1.5,
+      "contrast_level": "high",
+      "description": "Readable preset for video calls and screen sharing: high contrast and a distinctly visible pointer without being distracting.",
+      "source": "builtin"
+    }
+  ],
+  "state": {
+    "active_theme": null,
+    "last_applied": null
+  }
+}

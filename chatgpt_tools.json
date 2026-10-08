@@ -1,0 +1,188 @@
+{
+  "endpoint": "http://127.0.0.1:8010/tool",
+  "method": "POST",
+  "transport": "OpenAI-compatible function calling. POST {\"tool\": str, \"arguments\": dict} to the endpoint.",
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "get_system_status",
+        "description": "Get the current macOS version, uptime, and live accessibility settings (pointer size, display contrast, VoiceOver, keyboard navigation) plus the active profile/theme and server info.",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "list_cursor_themes",
+        "description": "List the available cursor themes (apple_cursor, high_contrast, large_pointer, remote_work_clear) with pointer size, contrast level, description, and source.",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "apply_cursor_theme",
+        "description": "Apply a cursor theme by name. Applies the theme's pointer size and display contrast settings and marks it active.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "theme_name": {
+              "type": "string",
+              "description": "Theme name: apple_cursor, high_contrast, large_pointer, or remote_work_clear",
+              "enum": ["apple_cursor", "high_contrast", "large_pointer", "remote_work_clear"]
+            }
+          },
+          "required": ["theme_name"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "list_accessibility_profiles",
+        "description": "List the available macOS accessibility/remote-work profiles with their settings, the active profile, and remote-work mode state.",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "create_accessibility_profile",
+        "description": "Create a custom accessibility profile. Only profile_name is required; any omitted setting is snapshotted from the current system state.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "profile_name": {
+              "type": "string",
+              "description": "Name for the new profile (max 64 chars, must be unique)"
+            },
+            "pointer_size": {
+              "type": "number",
+              "description": "Pointer size between 0.5 and 3.0 (1.0 = system default)",
+              "minimum": 0.5,
+              "maximum": 3.0
+            },
+            "display_contrast": {
+              "type": "string",
+              "description": "Display contrast level",
+              "enum": ["low", "normal", "high", "max"]
+            },
+            "voiceover_enabled": {
+              "type": "boolean",
+              "description": "Whether applying this profile should enable VoiceOver"
+            },
+            "keyboard_navigation": {
+              "type": "boolean",
+              "description": "Enable full keyboard navigation (Tab moves between all controls)"
+            },
+            "remote_work_mode": {
+              "type": "boolean",
+              "description": "Mark this profile as a remote-work profile"
+            },
+            "description": {
+              "type": "string",
+              "description": "Human-readable description of the profile"
+            }
+          },
+          "required": ["profile_name"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "apply_remote_work_profile",
+        "description": "Apply an accessibility/remote-work profile by name. Sets pointer size, display contrast, keyboard navigation, enables VoiceOver when the profile requests it, and updates remote-work mode state.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "profile_name": {
+              "type": "string",
+              "description": "Profile name: Remote Work, Accessibility Power User, Developer Focus, High Contrast, or a custom profile"
+            }
+          },
+          "required": ["profile_name"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "set_pointer_size",
+        "description": "Set the macOS pointer/cursor size. Allowed range: 0.5 to 3.0 (1.0 is the system default).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "number",
+              "description": "Pointer size between 0.5 and 3.0",
+              "minimum": 0.5,
+              "maximum": 3.0
+            }
+          },
+          "required": ["size"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "set_display_contrast",
+        "description": "Set display contrast. 'high' enables Increase Contrast + Reduce Transparency; 'max' additionally enables Differentiate Without Color; 'low'/'normal' restore the system baseline.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "level": {
+              "type": "string",
+              "description": "Contrast level",
+              "enum": ["low", "normal", "high", "max"]
+            }
+          },
+          "required": ["level"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "enable_voiceover",
+        "description": "Enable the macOS VoiceOver screen reader (Cmd+F5). Safe to call when VoiceOver is already running - it will not toggle it off.",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "backup_macos_settings",
+        "description": "Backup current macOS accessibility settings to ~/.macos-remote-work/backups/. Pass restore_from=<path to a previous backup .plist> to restore a backup instead.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "restore_from": {
+              "type": "string",
+              "description": "Optional: path to a previous backup .plist inside ~/.macos-remote-work/backups/ to restore"
+            }
+          },
+          "required": []
+        }
+      }
+    }
+  ]
+}
